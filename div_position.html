@@ -16,17 +16,25 @@
 	.special {
 		background: yellow;
 	}
+	.mamu{
+		width: 100px;
+		line-height: 100px;
+		margin-bottom: 10px;
+		text-align:center;
+		display:none;
+		background: red;
+	}
 </style>
 <script type="text/javascript">
 	$(window).load(function(){
 		function visibleDiv(){
-			var window = $(window);
+			var dis = $(window);
 			var view = {
-				top : window.scrollTop(),
-				left : window.scrollLeft()
+				top : dis.scrollTop(),
+				left : dis.scrollLeft()
 			};
-			view.right = view.left + window.width();
-			view.bottom = view.top + window.height();
+			view.right = view.left + dis.width();
+			view.bottom = view.top + dis.height();
 			var spePosi = $('.special').offset();
 // yellow div position 
 //			console.log(spePosi);
@@ -34,13 +42,15 @@
 			spePosi.bottom = spePosi.top + $('.special').outerHeight();
 			var result = (!(view.right < spePosi.left || view.left > spePosi.right || view.bottom < spePosi.top || view.top > spePosi.bottom));
 			if (result == true){
-				alert("visiable div");
+				console.log("visiable div");
+					$('.mamu').css({'display': 'block'});
 			} else{
-				alert("no visiable div");
+				console.log("no visiable div");
+					$('.mamu').css({'display': 'none'});
 			}
 
 		};
-		$('.common').click(function(){
+		$(window).scroll(function(){
 			visibleDiv($('.special'));
 		});
 	});  
@@ -76,6 +86,9 @@
 	</div>
 	<div class="common special">
 		marmik desai
+	</div>
+	<div class="mamu">
+		mamu
 	</div>
 	<div class="common">
 		marmik
