@@ -7,18 +7,18 @@
 <style type="text/css">
 	.common {
 		width: 100px;
-		height: 100px;
+		line-height: 100px;
 		margin-bottom: 10px;
-		background: blue;    
+		background: blue;
+		text-align:center;
 	}
 	.special {
-		background: orange;   
+		background: orange;
 	}
 </style>
-
 <script type="text/javascript">
 	$(window).load(function(){
-		$.fn.isOnScreen = function(){
+		function isOnScreen(){
 			var win = $(window);
 			var viewport = {
 				top : win.scrollTop(),
@@ -26,13 +26,14 @@
 			};
 			viewport.right = viewport.left + win.width();
 			viewport.bottom = viewport.top + win.height();
-			var bounds = this.offset();
-			bounds.right = bounds.left + this.outerWidth();
-			bounds.bottom = bounds.top + this.outerHeight();
+			var bounds = $(".common").offset();
+			bounds.right = bounds.left + $(".common").outerWidth();
+			bounds.bottom = bounds.top + $(".common").outerHeight();
 			return (!(viewport.right < bounds.left || viewport.left > bounds.right || viewport.bottom < bounds.top || viewport.top > bounds.bottom));
 		};
 		$('.common').click(function(){
-			alert($('.special').isOnScreen());
+			//alert($('.orange').isOnScreen());
+			alert($(this).isOnScreen());
 		});
 	});  
 </script>
