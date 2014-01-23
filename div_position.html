@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Find visiable div position</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<style type="text/css">
+	.box {
+		width: 100px;
+		height: 100px;
+		margin-bottom: 10px;
+		background: blue;    
+	}
+	.orange {
+		background: orange;   
+	}
+</style>
+
+<script type="text/javascript">
+	$(window).load(function(){
+		$.fn.isOnScreen = function(){
+			var win = $(window);
+			var viewport = {
+				top : win.scrollTop(),
+				left : win.scrollLeft()
+			};
+			viewport.right = viewport.left + win.width();
+			viewport.bottom = viewport.top + win.height();
+			var bounds = this.offset();
+			bounds.right = bounds.left + this.outerWidth();
+			bounds.bottom = bounds.top + this.outerHeight();
+			return (!(viewport.right < bounds.left || viewport.left > bounds.right || viewport.bottom < bounds.top || viewport.top > bounds.bottom));
+		};
+		$('.box').click(function(){
+			alert($('.orange').isOnScreen());
+		});
+	});  
+</script>
+</head>
+<body>
+	There is an orange div lower on the screen.  Click any box to alert if the orange box is within the visible viewport.
+	<div class="box"></div>
+	<div class="box"></div>
+	<div class="box"></div>
+	<div class="box"></div>
+	<div class="box"></div>
+	<div class="box"></div>
+	<div class="box"></div>
+	<div class="box"></div>
+	<div class="box"></div>
+	<div class="box orange"></div>
+	<div class="box"></div>
+	<div class="box"></div>
+	<div class="box"></div>
+	<div class="box"></div>
+</body>
+</html>
