@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Find visiable div position</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<style type="text/css">
+	.common {
+		width: 100px;
+		line-height: 100px;
+		margin-bottom: 10px;
+		background: purple;
+		text-align:center;
+		border-radius:50%;
+	}
+	.special {
+		background: yellow;
+	}
+	.mamu{
+		width: 100px;
+		line-height: 100px;
+		margin-bottom: 10px;
+		text-align:center;
+		display:none;
+		background: red;
+	}
+</style>
+<script type="text/javascript">
+	$(window).load(function(){
+		function visibleDiv(){
+			var dis = $(window);
+			var view = {
+				top : dis.scrollTop(),
+				left : dis.scrollLeft()
+			};
+			view.right = view.left + dis.width();
+			view.bottom = view.top + dis.height();
+			var spePosi = $('.special').offset();
+// yellow div position 
+//			console.log(spePosi);
+			spePosi.right = spePosi.left + $('.special').outerWidth();
+			spePosi.bottom = spePosi.top + $('.special').outerHeight();
+			var result = (!(view.right < spePosi.left || view.left > spePosi.right || view.bottom < spePosi.top || view.top > spePosi.bottom));
+			if (result == true){
+				console.log("visiable div");
+					$('.mamu').css({'display': 'block'});
+			} else{
+				console.log("no visiable div");
+					$('.mamu').css({'display': 'none'});
+			}
+
+		};
+		var sotpScroll = 0;
+		$(window).scroll(function(){
+			var windsc = window.pageYOffset;
+			var spePosi = $('.special').offset();
+			if(sotpScroll == 0){
+				sotpScroll = 1;
+				console.log(windsc);
+				console.log(spePosi.top);
+				if (windsc < spePosi.Top){
+				console.log('write condition here'); 
+					visibleDiv($('.special'));
+				}
+				setTimeout(function(){sotpScroll=0},1000);
+			}
+			else{
+				console.log('enough');
+			}
+		});
+	});  
+</script>
+</head>
+<body>
+	<div class="common special">
+		marmik desai
+	</div>
+	<div class="mamu">
+		mamu
+	</div>
+	<div class="common">
+		marmik
+	</div>
+	<div class="common">
+		marmik
+	</div>
+		<div class="common">
+		marmik
+	</div>
+		<div class="common">
+		marmik
+	</div>
+		<div class="common">
+		marmik
+	</div>
+		<div class="common">
+		marmik
+	</div>
+		<div class="common">
+		marmik
+	</div>
+		<div class="common">
+		marmik
+	</div>
+		<div class="common">
+		marmik
+	</div>
+	<div class="common">
+		marmik
+	</div>
+		<div class="common">
+		marmik
+	</div>
+		<div class="common">
+		marmik
+	</div>
+		<div class="common">
+		marmik
+	</div>
+		<div class="common">
+		marmik
+	</div>
+		<div class="common">
+		marmik
+	</div>
+	
+</body>
+</html>
