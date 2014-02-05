@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>animation div html | marmik</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<style type="text/css">
+	body{
+		margin:0px;
+		padding:0px;
+	}
+	.a{
+		width:100%;
+		float:left;
+		height:300px;
+		background:purple;
+	}
+	.b{
+		width:100%;
+		float:left;
+		height:350px;
+		background:blue;
+	}
+	.c{
+		width:100%;
+		float:left;
+		height:300px;
+		background:lime;
+	}
+	.ani{
+		width:50%;
+		margin:0px auto;
+		height:300px;
+		opacity:0;
+		background:red;
+	}
+	.d{
+		width:100%;
+		float:left;
+		height:300px;
+		background:yellow;
+	}
+</style>
+<script>
+	function scollPosition(){
+		$(window).scroll(function(){
+			var cPosition = $('.c').offset();
+			var animationStartPoint = cPosition.top - 100;
+			console.log(animationStartPoint);
+			// console.log('c class position' + cPosition.top);
+			var dPosition = $('.d').offset();
+			// console.log('d class position' + dPosition.top);
+			var windowPosition = window.pageYOffset;
+			console.log('window position:- ' + windowPosition + ' dPosition.top:- ' + dPosition.top);
+			if (windowPosition > animationStartPoint && windowPosition < dPosition.top){
+				animation();
+			}
+		});
+	}
+	function animation(){
+		var sotpScroll = 0;
+		$(window).scroll(function(){
+			if(sotpScroll == 0){
+				sotpScroll = 1;
+				$('.ani').animate({'opacity':'1'},500);
+			}
+			$('.ani').animate({'opacity':'0'},500);
+			setTimeout(function(){sotpScroll=0},10);
+		});
+	}
+	$(function(){
+		scollPosition();
+	});
+</script>
+</head>
+<body>
+<div class="a">
+	top div
+</div>
+<div class="b">
+	second div
+</div>
+<div class="c">
+	<div class="ani">
+		animation div
+	</div>
+</div>
+<div class="d">
+	last div
+</div>
+</body>
+</html>
