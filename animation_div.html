@@ -43,31 +43,35 @@
 </style>
 <script>
 	function scollPosition(){
-		$(window).scroll(function(){
-			var cPosition = $('.c').offset();
-			var animationStartPoint = cPosition.top - 100;
-			console.log(animationStartPoint);
-			// console.log('c class position' + cPosition.top);
-			var dPosition = $('.d').offset();
-			// console.log('d class position' + dPosition.top);
-			var windowPosition = window.pageYOffset;
-			console.log('window position:- ' + windowPosition + ' dPosition.top:- ' + dPosition.top);
-			if (windowPosition > animationStartPoint && windowPosition < dPosition.top){
-				animation();
-			}
-		});
-	}
-	function animation(){
 		var sotpScroll = 0;
 		$(window).scroll(function(){
 			if(sotpScroll == 0){
 				sotpScroll = 1;
-				$('.ani').animate({'opacity':'1'},500);
+				var cPosition = $('.c').offset();
+				var animationStartPoint = cPosition.top - 100;
+				console.log(animationStartPoint);
+				// console.log('c class position' + cPosition.top);
+				var dPosition = $('.d').offset();
+				// console.log('d class position' + dPosition.top);
+				var windowPosition = window.pageYOffset;
+				console.log('window position:- ' + windowPosition + ' dPosition.top:- ' + dPosition.top);
+				if (windowPosition > animationStartPoint && windowPosition < dPosition.top){
+					animation();
+				}
 			}
-			$('.ani').animate({'opacity':'0'},500);
 			setTimeout(function(){sotpScroll=0},10);
 		});
 	}
+	function animation(){
+//		var sotpScroll = 0;
+		$(function(){
+//			if(sotpScroll == 0){
+//				sotpScroll = 1;
+			$('.ani').animate({'opacity':'1'},500);
+		});
+		$('.ani').animate({'opacity':'0'},500);
+//			setTimeout(function(){sotpScroll=0},10);
+	};
 	$(function(){
 		scollPosition();
 	});
