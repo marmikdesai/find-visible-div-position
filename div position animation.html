@@ -27,6 +27,12 @@
 	}
 </style>
 <script type="text/javascript">
+/*!
+ * Expanable Search
+ * Original author: @Marmik Desai
+ * Further changes, comments: @Marmik Desai
+ * Licensed under the MIT license
+ */;
 	$(window).load(function(){
 		function visibleDiv(){
 			var dis = $(window);
@@ -54,12 +60,13 @@
 		var sotpScroll = 0;
 		$(window).scroll(function(){
 			var windsc = window.pageYOffset;
+			console.log(windsc);
+			var hei = $('.special').height();
+			console.log(hei);
 			var spePosi = $('.special').offset();
 			if(sotpScroll == 0){
 				sotpScroll = 1;
-				console.log(windsc);
-				console.log(spePosi.top);
-				if (windsc < spePosi.Top){
+				if (windsc > hei){
 				console.log('write condition here'); 
 					visibleDiv($('.special'));
 				}
@@ -76,22 +83,22 @@
 	<div class="common special">
 		marmik desai
 	</div>
+	<div class="common">
+		marmik
+	</div>
+	<div class="common">
+		marmik
+	</div>
+		<div class="common">
+		marmik
+	</div>
+		<div class="common">
+		marmik
+	</div>
 	<div class="mamu">
 		mamu
 	</div>
 	<div class="common">
-		marmik
-	</div>
-	<div class="common">
-		marmik
-	</div>
-		<div class="common">
-		marmik
-	</div>
-		<div class="common">
-		marmik
-	</div>
-		<div class="common">
 		marmik
 	</div>
 		<div class="common">
